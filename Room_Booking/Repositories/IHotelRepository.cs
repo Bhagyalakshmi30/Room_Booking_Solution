@@ -13,6 +13,10 @@ namespace Room_Booking.Repositories
         Task<List<Hotels>> CreateHotel(Hotels hotels);
 
         Task<List<Hotels?>> DeleteHotel(int id);
+
+        public IEnumerable<Hotels> FilterHotels(string location);
+        public int GetRoomCount(int RoomId, int HotelId);
+        public IEnumerable<Hotels> FilterPriceRange(decimal minPrice, decimal maxPrice);
         //public List<Hotels> Search(string keyword);
 
     }

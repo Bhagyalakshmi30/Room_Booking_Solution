@@ -75,28 +75,42 @@ namespace Room_Booking.Controllers
             return Ok(res);
         }
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<List<Customer>>> SearchCustomerByName(string name)
-        {
-            var res = await _customerRepository.SearchCustomerByName(name);
-            if (res == null)
-            {
-                return NotFound("id not matching");
-            }
-            return Ok(res);
+       
 
-        }
 
-        [HttpGet]
-        public  int CountAllCustomers()
-        {
-            int res = _customerRepository.CountAllCustomers();
-            if (res == null)
-            {
-                return 0;
-            }
-            return res;
-        }
+
+
+
+
+
+
+
+
+
+
+
+        //[HttpGet("{name}")]
+        //public async Task<ActionResult<List<Customer>>> SearchCustomerByName(string name)
+        //{
+        //    var res = await _customerRepository.SearchCustomerByName(name);
+        //    if (res == null)
+        //    {
+        //        return NotFound("id not matching");
+        //    }
+        //    return Ok(res);
+
+        //}
+
+        //[HttpGet]
+        //public  int CountAllCustomers()
+        //{
+        //    int res = _customerRepository.CountAllCustomers();
+        //    if (res == null)
+        //    {
+        //        return 0;
+        //    }
+        //    return res;
+        //}
 
 
 

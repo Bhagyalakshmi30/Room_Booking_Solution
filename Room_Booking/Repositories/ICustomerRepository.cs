@@ -10,7 +10,10 @@ namespace Room_Booking.Repositories
         Task<List<Customer?>> PutCustomer(int id, Customer customer);
         Task<List<Customer>> PostCustomer(Customer customer);
         Task<List<Customer?>> DeleteCustomer(int id);
-        Task<List<Customer?>> SearchCustomerByName(string name);
-        int CountAllCustomers();
+
+
+        
+        //Task<List<Customer?>> SearchCustomerByName(string name);
+        //int CountAllCustomers();
     }
 }

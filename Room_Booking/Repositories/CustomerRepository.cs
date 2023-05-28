@@ -75,15 +75,9 @@ namespace Room_Booking.Repositories
             return await _context.customer.ToListAsync();
         }
 
-        public async  Task<List<Customer?>> SearchCustomerByName(string name)
-        {
-            var res = await _context.customer.Where(c=>c.FirstName==name).ToListAsync();
-            if (res == null)
-            {
-                return null;
-            }
-            return res;
+        
+        
 
-        }
+       
     }
 }

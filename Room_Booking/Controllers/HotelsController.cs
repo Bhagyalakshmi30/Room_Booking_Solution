@@ -76,6 +76,29 @@ namespace Room_Booking.Controllers
 
 
 
+        [HttpGet("filter")]
+        public IEnumerable<Hotels> FilterHotels(string location)
+        {
+            return _hotelRepository.FilterHotels(location);
+        }
+
+
+        [HttpGet("roomcount")]
+        public int GetRoomCount(int RoomId, int HotelId)
+        {
+
+            return _hotelRepository.GetRoomCount(RoomId, HotelId);
+
+
+        }
+        [HttpGet("price-range")]
+        public IEnumerable<Hotels> FilterPriceRange(decimal minPrice, decimal maxPrice)
+        {
+            return _hotelRepository.FilterPriceRange(minPrice, maxPrice);
+        }
+
+
+
 
 
 

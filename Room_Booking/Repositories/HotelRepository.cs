@@ -65,5 +65,62 @@ namespace Room_Booking.Repositories
             return await _context.hotels.ToListAsync();
 
         }
+
+        public IEnumerable<Hotels> FilterHotels(string location)
+        {
+            try
+            {
+                var filteredHotels = _context.hotels.AsQueryable();
+
+                if (!string.IsNullOrEmpty(location))
+                {
+                    filteredHotels = filteredHotels.Where(h => h.Location.Contains(location));
+                }
+
+                return filteredHotels.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to filter hotels.", ex);
+            }
+        }
+
+
+        public int GetRoomCount(int RoomId, int HotelId)
+        {
+            try
+            {
+                var count = (from room in _context.rooms
+                             join hotel in _context.hotels on room.hotels.HotelId equals hotel.HotelId
+                             where room.RoomId == RoomId && hotel.HotelId == HotelId
+                             select hotel.UpdateRooms).FirstOrDefault();
+
+                return count;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to get room count by RoomId and HotelId.", ex);
+            }
+        }
+        public IEnumerable<Hotels> FilterPriceRange(decimal minPrice, decimal maxPrice)
+        {
+
+            var priceQuery = _context.hotels.Include(x => x.rooms).AsQueryable();
+
+            if (minPrice > 0)
+            {
+                priceQuery = priceQuery.Where(r => r.PricePerDay >= minPrice);
+            }
+
+            if (maxPrice > 0)
+            {
+                priceQuery = priceQuery.Where(r => r.PricePerDay <= maxPrice);
+            }
+
+            return priceQuery.ToList();
+
+        }
+
+
     }
 }
